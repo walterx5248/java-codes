@@ -1,0 +1,83 @@
+import java.lang.*;
+import java.util.*;
+public class Knapsack6b
+{
+ int n;
+ float m,sum;
+ float w[]=new float[10];
+ float p[]= new float[10];
+ float x[]=new float [10];
+ void getdata()
+ {
+ Scanner read=new Scanner(System.in);
+ System.out.println("enter the number of items");
+ n=read.nextInt();
+ System.out.println("enter item with decsending order density");
+ System.out.println("enter the weight of each item");
+ for(int i=0;i<n;i++)
+ {
+ w[i]=read.nextFloat();
+ 
+ }
+ System.out.println("enter profit of each item");
+ for(int i=0;i<n;i++)
+ {
+ p[i]=read.nextFloat();
+ 
+ }
+ System.out.println("enter max capacity");
+ m=read.nextFloat();
+ }
+ void optimal()
+ {
+ int i;
+ float rem;
+ for( i=1;i<n;i++)
+ {
+ x[i]=0;
+ 
+ 
+ }
+ 
+ rem=m; sum=0;
+ for(i=0;i<n;i++)
+ {
+     if(w[i]>rem)
+ break;
+ x[i]=1;
+ sum=sum+p[i];
+ rem=rem-w[i];
+ 
+ 
+ }
+ if(i<=n)
+ {
+ x[i]=rem/w[i];
+ sum=sum+(rem/w[i]*p[i]);
+ 
+ }
+ }
+ void display()
+ {
+ System.out.println("optimal sloution="+sum);
+ System.out.println("item selected weight and profit");
+ for(int i=1;i<n;i++)
+ {
+ System.out.print(x[i]*w[i]);
+ System.out.print(" "+x[i]*p[i]);
+ System.out.println();
+ 
+ 
+ }
+ }
+ public static void main(String[] args) 
+ {
+ Knapsack6b ob=new Knapsack6b();
+ ob.getdata();
+ ob.optimal();
+ ob.display();
+ 
+ }
+ 
+}
+ 
